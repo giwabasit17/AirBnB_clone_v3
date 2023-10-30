@@ -68,6 +68,18 @@ class FileStorage:
         if obj_key in self.__objects.keys():
             del self.__objects[obj_key]
 
+     def get(self, cls, id):
+        """get an element based on the given id"""
+        for elem in self.all(cls).values():
+            if elem.id == id:
+                return elem
+
+        return None
+
+    def count(self, cls=None):
+        """get the number of elements"""
+        return len(self.all(cls).values())
+
     def close(self):
         """Call the reload method"""
         self.reload()
